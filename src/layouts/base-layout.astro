@@ -1,0 +1,47 @@
+---
+import '@/styles/index.css'
+import ContainerDot from '@/components/layout/containerDot.astro'
+import ProviderAnimations from '@/components/layout/provider-animations.astro'
+import { cn } from '@/lib/utils'
+import ViewTransitions from 'astro/components/ViewTransitions.astro'
+
+export interface Props {
+  title?: string | undefined
+  description?: string | undefined
+  author?: string | undefined
+  keywords?: string | undefined
+  copyright?: string | undefined
+  bodyClass?: string
+  lang?: string
+}
+
+const { author, keywords, title, copyright, lang, description, bodyClass } = Astro.props as Props
+---
+
+<html lang={lang} dir="ltr" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    {title ? <meta name="title" content={title} /> : null}
+    {description ? <meta name="description" content={description} /> : null}
+    {copyright ? <meta name="copyright" content={copyright} /> : null}
+    {keywords ? <meta name="keywords" content={keywords} /> : null}
+    {author ? <meta name="author" content={author} /> : null}
+    {keywords ? <meta name="keywords" content={keywords} /> : null}
+
+    <ProviderAnimations />
+    <ViewTransitions />
+  </head>
+  <body
+    class={cn(
+      "flex flex-col page bg-background text-foreground antialiased min-h-screen",
+      bodyClass,
+    )}
+  >
+    <ContainerDot />
+    <slot />
+  </body>
+</html>
