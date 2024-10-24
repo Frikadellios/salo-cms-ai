@@ -13,6 +13,8 @@ declare namespace App {
 interface ImportMetaEnv {
   readonly SKIP_DEPENDENCY_INSTALL: string
   readonly UNSTABLE_PRE_BUILD: string
+  readonly GITHUB_CLIENT_ID: string
+  readonly GITHUB_CLIENT_SECRET: string
 }
 
 interface ImportMeta {

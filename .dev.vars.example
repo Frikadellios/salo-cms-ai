@@ -1,0 +1,5 @@
+BASE_URL = "http://localhost:4321"
+GITHUB_CLIENT_ID = "XXX"
+GITHUB_CLIENT_SECRET = "XXX"
+SKIP_DEPENDENCY_INSTALL = "true"
+UNSTABLE_PRE_BUILD = "asdf install bun latest && asdf global bun latest && bun i"
