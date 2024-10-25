@@ -1,9 +1,8 @@
 'use client'
 
-import * as React from 'react'
 import { CaretSortIcon, CheckIcon, PlusCircledIcon } from '@radix-ui/react-icons'
+import * as React from 'react'
 
-import { cn } from '@/lib/utils'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/react/ui/avatar'
 import { Button } from '@/components/react/ui/button'
 import {
@@ -28,6 +27,7 @@ import { Input } from '@/components/react/ui/input'
 import { Label } from '@/components/react/ui/label'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/react/ui/popover'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/react/ui/select'
+import { cn } from '@/lib/utils'
 
 const groups = [
   {

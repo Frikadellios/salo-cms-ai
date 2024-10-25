@@ -1,26 +1,19 @@
-import { useMemo, useRef } from "react"
+import { useMemo, useRef } from 'react'
 
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-export const isFunction = (value: unknown): value is (...args: any) => any =>
-  typeof value === "function"
+export const isFunction = (value: unknown): value is (...args: any) => any => typeof value === 'function'
 
-export const isDev =
-  process.env.NODE_ENV === "development" || process.env.NODE_ENV === "test"
+export const isDev = process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test'
 
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 type noop = (this: any, ...args: any[]) => any
 
-type PickFunction<T extends noop> = (
-  this: ThisParameterType<T>,
-  ...args: Parameters<T>
-) => ReturnType<T>
+type PickFunction<T extends noop> = (this: ThisParameterType<T>, ...args: Parameters<T>) => ReturnType<T>
 
 function useMemoizedFn<T extends noop>(fn: T) {
   if (isDev) {
     if (!isFunction(fn)) {
-      console.error(
-        `useMemoizedFn expected parameter is a function, got ${typeof fn}`
-      )
+      console.error(`useMemoizedFn expected parameter is a function, got ${typeof fn}`)
     }
   }
 

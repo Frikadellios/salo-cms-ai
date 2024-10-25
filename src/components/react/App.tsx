@@ -1,7 +1,3 @@
-import { Routes, Route, Outlet, Link } from 'react-router-dom'
-import { Button } from '@/components/react/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/react/ui/card'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/react/ui/tabs'
 import { CalendarDateRangePicker } from '@/components/react/dashbord/elements/date-range-picker'
 import { MainNav } from '@/components/react/dashbord/elements/main-nav'
 import { Overview } from '@/components/react/dashbord/elements/overview'
@@ -9,6 +5,10 @@ import { RecentSales } from '@/components/react/dashbord/elements/recent-sales'
 import { Search } from '@/components/react/dashbord/elements/search'
 import TeamSwitcher from '@/components/react/dashbord/elements/team-switcher'
 import { UserNav } from '@/components/react/dashbord/elements/user-nav'
+import { Button } from '@/components/react/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/react/ui/card'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/react/ui/tabs'
+import { Link, Outlet, Route, Routes } from 'react-router-dom'
 
 export const Metadata = {
   title: 'Dashboard',
@@ -258,7 +258,6 @@ function Dashboard() {
     </>
   )
 }
-
 
 function NoMatch() {
   return (

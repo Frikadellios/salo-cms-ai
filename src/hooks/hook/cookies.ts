@@ -1,14 +1,12 @@
-import { useState } from "react"
-import Cookies from "js-cookie"
+import Cookies from 'js-cookie'
+import { useState } from 'react'
 
-import useMemoizedFn from "./memoized-fn"
+import useMemoizedFn from './memoized-fn'
 
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-export const isFunction = (value: unknown): value is (...args: any) => any =>
-  typeof value === "function"
+export const isFunction = (value: unknown): value is (...args: any) => any => typeof value === 'function'
 
-export const isString = (value: unknown): value is string =>
-  typeof value === "string"
+export const isString = (value: unknown): value is string => typeof value === 'string'
 
 export type State = string | undefined
 
@@ -30,13 +28,10 @@ function useCookie(cookieKey: string, options: Options = {}) {
   })
 
   const updateState = useMemoizedFn(
-    (
-      newValue: State | ((prevState: State) => State),
-      newOptions: Cookies.CookieAttributes = {}
-    ) => {
-      const { defaultValue = "", ...restOptions } = {
+    (newValue: State | ((prevState: State) => State), newOptions: Cookies.CookieAttributes = {}) => {
+      const { defaultValue = '', ...restOptions } = {
         ...options,
-        ...newOptions,
+        ...newOptions
       }
       const value = isFunction(newValue) ? newValue(state) : newValue
 

@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react'
 
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export function useDebounce(value: any, delay: number) {

@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from 'react'
 
 interface GeolocationOptions {
   enableHighAccuracy?: boolean
@@ -19,9 +19,7 @@ interface GeolocationState {
   error: GeolocationPositionError | null
 }
 
-export function useGeolocation(
-  options: GeolocationOptions = {}
-): GeolocationState {
+export function useGeolocation(options: GeolocationOptions = {}): GeolocationState {
   const [state, setState] = React.useState<GeolocationState>({
     loading: true,
     accuracy: null,
@@ -32,7 +30,7 @@ export function useGeolocation(
     longitude: null,
     speed: null,
     timestamp: null,
-    error: null,
+    error: null
   })
 
   const optionsRef = React.useRef(options)
@@ -49,7 +47,7 @@ export function useGeolocation(
         altitudeAccuracy: coords.altitudeAccuracy,
         heading: coords.heading,
         speed: coords.speed,
-        error: null,
+        error: null
       })
     }
 
@@ -57,21 +55,13 @@ export function useGeolocation(
       setState((s) => ({
         ...s,
         loading: false,
-        error,
+        error
       }))
     }
 
-    navigator.geolocation.getCurrentPosition(
-      onEvent,
-      onEventError,
-      optionsRef.current
-    )
+    navigator.geolocation.getCurrentPosition(onEvent, onEventError, optionsRef.current)
 
-    const watchId = navigator.geolocation.watchPosition(
-      onEvent,
-      onEventError,
-      optionsRef.current
-    )
+    const watchId = navigator.geolocation.watchPosition(onEvent, onEventError, optionsRef.current)
 
     return () => {
       navigator.geolocation.clearWatch(watchId)

@@ -1,5 +1,5 @@
-import { cn } from '@/lib/utils'
 import { buttonVariants } from '@/components/react/ui/button'
+import { cn } from '@/lib/utils'
 import { UserAuthForm } from './user-auth-form'
 
 export const metadata = {

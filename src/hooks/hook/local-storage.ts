@@ -1,7 +1,7 @@
-import * as React from "react"
+import * as React from 'react'
 
 function dispatchStorageEvent(key: string, newValue: string | null) {
-  window.dispatchEvent(new StorageEvent("storage", { key, newValue }))
+  window.dispatchEvent(new StorageEvent('storage', { key, newValue }))
 }
 
 const setLocalStorageItem = (key: string, value: unknown) => {
@@ -20,35 +20,24 @@ const getLocalStorageItem = (key: string): string | null => {
 }
 
 const useLocalStorageSubscribe = (callback: (event: StorageEvent) => void) => {
-  window.addEventListener("storage", callback)
-  return () => window.removeEventListener("storage", callback)
+  window.addEventListener('storage', callback)
+  return () => window.removeEventListener('storage', callback)
 }
 
 const getLocalStorageServerSnapshot = () => {
-  throw Error("useLocalStorage is a client-only hook")
+  throw Error('useLocalStorage is a client-only hook')
 }
 
-export function useLocalStorage<T>(
-  key: string,
-  initialValue: T
-): [T, (v: T | ((prevValue: T) => T)) => void] {
+export function useLocalStorage<T>(key: string, initialValue: T): [T, (v: T | ((prevValue: T) => T)) => void] {
   const getSnapshot = () => getLocalStorageItem(key)
 
-  const store = React.useSyncExternalStore(
-    useLocalStorageSubscribe,
-    getSnapshot,
-    getLocalStorageServerSnapshot
-  )
+  const store = React.useSyncExternalStore(useLocalStorageSubscribe, getSnapshot, getLocalStorageServerSnapshot)
 
   const setState = React.useCallback(
     (v: T | ((prevValue: T) => T)) => {
       try {
         const nextState =
-          typeof v === "function"
-            ? (v as (prevValue: T) => T)(
-                store ? JSON.parse(store) : initialValue
-              )
-            : v
+          typeof v === 'function' ? (v as (prevValue: T) => T)(store ? JSON.parse(store) : initialValue) : v
 
         if (nextState === undefined || nextState === null) {
           removeLocalStorageItem(key)
@@ -63,10 +52,7 @@ export function useLocalStorage<T>(
   )
 
   React.useEffect(() => {
-    if (
-      getLocalStorageItem(key) === null &&
-      typeof initialValue !== "undefined"
-    ) {
+    if (getLocalStorageItem(key) === null && typeof initialValue !== 'undefined') {
       setLocalStorageItem(key, initialValue)
     }
   }, [key, initialValue])
