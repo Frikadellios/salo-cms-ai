@@ -6,6 +6,12 @@ dist/
 # dependencies
 node_modules/
 
+node_modules
+dist
+.wrangler/state
+.wrangler/tmp
+wrangler.toml
+
 # logs
 npm-debug.log*
 yarn-debug.log*

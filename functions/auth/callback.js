@@ -27,10 +27,8 @@ export async function onRequest(context) {
 
     if (responseData.access_token) {
       return Response.redirect(`${env.BASE_URL}/?access_token=${responseData.access_token}`, 302)
-      // biome-ignore lint/style/noUselessElse: <explanation>
-    } else {
-      throw new Error('Access token not found')
     }
+    throw new Error('Access token not found')
   }
 
   return new Response('Invalid request', { status: 400 })

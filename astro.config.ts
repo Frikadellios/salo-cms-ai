@@ -13,6 +13,8 @@ import autoprefixer from 'autoprefixer'
 import cssDiscardComments from 'postcss-discard-comments'
 import lightningcss from 'vite-plugin-lightningcss'
 
+import vue from '@astrojs/vue';
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://salo-ai.pages.dev',
@@ -53,5 +55,5 @@ export default defineConfig({
   prefetch: {
     prefetchAll: true
   },
-  integrations: [react(), sitemap(), partytown(), mdx()]
+  integrations: [react(), sitemap(), partytown(), mdx(), vue()]
 })

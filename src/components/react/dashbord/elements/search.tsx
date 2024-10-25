@@ -3,7 +3,11 @@ import { Input } from '@/components/react/ui/input'
 export function Search() {
   return (
     <div>
-      <Input type="search" placeholder="Search..." className="md:w-[100px] lg:w-[300px]" />
+      <Input
+        type="search"
+        placeholder="Search..."
+        className="border-trancperent ring-trancperent shadow-trancperent md:w-[100px] lg:w-[300px]"
+      />
     </div>
   )
 }

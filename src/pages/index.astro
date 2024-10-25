@@ -1,11 +1,61 @@
 ---
-import Main from '@/components/react/main.tsx'
+import Main from "@/components/react/main.tsx";
+import "@/styles/index.css";
+const { pathname } = new URL(Astro.request.url);
+import Layout from "@/layouts/base-layout.astro";
+import { lucia } from "@/lib/auth";
 
-const { pathname } = new URL(Astro.request.url)
-import Layout from '@/layouts/base-layout.astro'
+const { user, session } = Astro.locals;
+
+if (Astro.request.method === "POST" && session) {
+  await lucia.invalidateSession(session.id);
+
+  const sessionCookie = lucia.createBlankSessionCookie();
+  Astro.cookies.set(
+    sessionCookie.name,
+    sessionCookie.value,
+    sessionCookie.attributes,
+  );
+
+  return Astro.redirect("/");
+}
 ---
 
 <Layout title="Welcome to Astro." lang="en">
+  <h1>
+    <span class="astro-text-gradient">Astro DB</span> + <span
+      class="lucia-text-gradient">Lucia</span
+    >
+  </h1>
+
+  {
+    !session ? (
+      <a href="/login/github" class="button">
+        Sign in with GitHub
+      </a>
+    ) : (
+      <form method="post">
+        <button class="button">Sign out</button>
+      </form>
+    )
+  }
+
+  {user && <h2>Hello, {user.username}!</h2>}
+
+  {
+    user && (
+      <div class="auth-details">
+        User: <pre>{JSON.stringify(user)}</pre>
+      </div>
+    )
+  }
+  {
+    session && (
+      <div class="auth-details">
+        Session: <pre>{JSON.stringify(session)}</pre>
+      </div>
+    )
+  }
   <Main {pathname} client:load />
 </Layout>
 

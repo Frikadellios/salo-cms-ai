@@ -24,6 +24,7 @@
     "enabled": true
   },
   "linter": {
+    "enabled": true,
     "rules": {
       "a11y": { "recommended": true },
       "complexity": { "recommended": true },
@@ -69,12 +70,13 @@
   },
   "overrides": [
     {
-      "include": ["*.svelte", "*.astro", "*.vue"],
+      "include": ["*.svelte", "*.astro", "*.vue", "src/components/react/main.tsx"],
       "linter": {
         "rules": {
           "style": {
             "useConst": "off",
-            "useImportType": "off"
+            "useImportType": "off",
+            "noNonNullAssertion": "off"
           }
         }
       }
@@ -86,6 +88,16 @@
       "include": [".*", "*.json", "*.md", "*.toml", "*.yml"],
       "formatter": { "indentStyle": "space" }
     },
-    { "include": ["*.md", "*.mdx"], "formatter": { "lineWidth": 120 } }
+    { "include": ["*.md", "*.mdx"], "formatter": { "lineWidth": 120 } },
+    {
+      "include": ["src/components/react/App.tsx", "astro.config.ts", "tailwind.config.js"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noDefaultExport": "off"
+          }
+        }
+      }
+    }
   ]
 }
